@@ -33,9 +33,10 @@
                                         </div>
                                         <ul tabindex="0"
                                             class="dropdown-content  z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                {{-- <li><a
-                                                        href="{{ route('accounts.show', ['account' => $item->id]) }}">Detail</a>
+                                                 <li><a
+                                                        href="{{ route('blogs.show', ['blog' => $item->id]) }}">Detail</a>
                                                 </li>
+                                                {{--
                                                 <li><a data-selector="#edit-modal .content"
                                                         data-url="{{ route('api.accounts.show') }}?id={{ $item->id }}&type=edit"
                                                         onclick="app.HELPERS.addQueryParam({'id' : '{{ $item->id }}', 'type' : 'edit' , 'popup' : true, 'modal' : 'edit-modal'})"
