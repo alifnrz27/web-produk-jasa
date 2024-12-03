@@ -35,17 +35,3 @@
         </form>
     </div>
 @endsection
-
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if(session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Produk Berhasil Ditambahkan',
-                text: '{{ session('success') }}',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    @endif
-@endpush
