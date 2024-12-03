@@ -33,7 +33,22 @@ class BlogController extends Controller
         return view('blogs.create');
     }
 
-    public function store() {}
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:blogs,slug',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'content' => 'required|string',
+        ]);
+        $response = $this->blogService->createBlog($validatedData);
+
+        if ($response['code'] !== 200) {
+            return redirect()->route('blogs.create')->with('error', $response['message']);
+        }
+    
+        return redirect()->route('blogs.index');
+    }
 
     public function edit() {}
 

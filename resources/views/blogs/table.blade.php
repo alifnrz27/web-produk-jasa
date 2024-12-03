@@ -41,8 +41,8 @@
                                                         data-url="{{ route('api.accounts.show') }}?id={{ $item->id }}&type=edit"
                                                         onclick="app.HELPERS.addQueryParam({'id' : '{{ $item->id }}', 'type' : 'edit' , 'popup' : true, 'modal' : 'edit-modal'})"
                                                         data-id="{{ $item->id }}" data-type="edit" class="btn-ajax"
-                                                        href="#edit-modal">Ubah Data</a></li>
-                                                <li> --}}
+                                                        href="#edit-modal">Ubah Data</a></li>--}}
+                                                <li> 
                                                     <form id="delete-data-form-{{ $item->id }}"
                                                         action="{{ route('blogs.destroy', ['id' => $item->id]) }}"
                                                         method="post">
