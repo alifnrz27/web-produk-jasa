@@ -1,21 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
-use App\Models\Product;
+use App\Http\Controllers\Controller;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index(Request $request)
     {
         $search = $request->input('search');
-
-        $products = Product::when($search, function ($query, $search) {
-            return $query->where('name', 'like', "%{$search}%")
-                         ->orWhere('description', 'like', "%{$search}%");
-        })->get();
+        $products = $this->productService->getAllProducts($search);
 
         return view('products.index', ['products' => $products]);
     }
@@ -34,24 +37,14 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('product_images', 'public');
-        }
-
-        Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'image' => $imagePath,
-        ]);
+        $this->productService->createProduct($request->all());
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $product = $this->productService->getProductById($id);
 
         return view('products.edit', ['product' => $product]);
     }
@@ -65,33 +58,20 @@ class ProductController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $product = Product::findOrFail($id);
-
-        $product->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'image' => $request->file('image') ? $request->file('image')->store('product_images','public') : $product->image,
-        ]);
+        $this->productService->updateProduct($id, $request->all());
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = $this->productService->getProductById($id);
         return view('products.show', ['product' => $product]);
     }
 
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-
-        if ($product->image) {
-            Storage::delete($product->image);
-        }
-
-        $product->delete();
+        $this->productService->deleteProduct($id);
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus!');
     }

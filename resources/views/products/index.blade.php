@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="container mx-auto p-6">
-        
         <a href="{{ route('products.create') }}" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 mb-6 inline-block text-lg font-semibold transition duration-300 transform hover:scale-105">Tambah Produk</a>
 
         @if($products->isEmpty())
@@ -15,13 +14,6 @@
                     <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                         <div class="relative mb-4">
                             <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-64 object-cover rounded-lg mb-4">
-                            
-                            @if($product->is_sale)
-                                <div class="absolute top-0 left-0 bg-red-500 text-white py-1 px-4 rounded-br-lg text-xs font-semibold">Sale</div>
-                            @endif
-                            @if($product->is_new)
-                                <div class="absolute top-0 right-0 bg-green-500 text-white py-1 px-4 rounded-bl-lg text-xs font-semibold">New</div>
-                            @endif
                         </div>
 
                         <a href="{{ route('products.show', $product->id) }}" class="text-2xl font-semibold text-blue-600 hover:text-blue-700 hover:underline transition duration-300">{{ $product->name }}</a>
@@ -36,7 +28,7 @@
                                 <form action="{{ route('products.destroy', $product->id) }}" method="POST" id="delete-form-{{ $product->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" id="delete-btn-{{ $product->id }}" class="w-20 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 text font-semibold transition duration-300 transform hover:scale-105 mb-2">Hapus</button>
+                                    <button type="button" id="delete-btn-{{ $product->id }}" class="w-20 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 font-semibold transition duration-300 transform hover:scale-105 mb-2">Hapus</button>
                                 </form>
                             </div>
                         </div>
@@ -48,6 +40,7 @@
 
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script>
             @foreach ($products as $product)
                 document.getElementById('delete-btn-{{ $product->id }}').addEventListener('click', function(event) {
@@ -68,5 +61,21 @@
                 });
             @endforeach
         </script>
+
+        @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    showConfirmButton: true,
+                    reverseButtons: true
+
+                });
+            });
+        </script>
+        @endif
     @endpush
 @endsection
