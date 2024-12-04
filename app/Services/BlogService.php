@@ -2,34 +2,35 @@
 
 namespace App\Services;
 
-use App\Exports\ExcelExport;
-use App\Helpers\EligibilityCreator;
-use App\Helpers\FileUploader;
-use App\Helpers\JsonResponse;
-use App\Helpers\NotificationManager;
-use App\Jobs\ImportAccountsJob;
-use App\Models\Account;
-use App\Models\AccountTypeSchoolDetail;
+use Str;
+use Exception;
 use App\Models\Area;
 use App\Models\Blog;
-use App\Models\ProgramManagement;
-use App\Models\Branch;
-use App\Models\Category;
 use App\Models\City;
-use App\Models\Cluster;
-use App\Models\ContactAccount;
-use App\Models\Eligibility;
-use App\Models\Region;
-use App\Models\SocialMedia;
-use App\Models\Territory;
-use App\Models\UpdateHistoryModule;
 use App\Models\User;
-use App\Services\SocialMediaService;
-use Exception;
+use App\Models\Branch;
+use App\Models\Region;
+use App\Models\Account;
+use App\Models\Cluster;
+use App\Models\Category;
+use App\Models\Territory;
+use App\Models\Eligibility;
+use App\Models\SocialMedia;
+use App\Exports\ExcelExport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Helpers\FileUploader;
+use App\Helpers\JsonResponse;
+use App\Models\ContactAccount;
+use App\Jobs\ImportAccountsJob;
+use App\Models\ProgramManagement;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\EligibilityCreator;
+use App\Models\UpdateHistoryModule;
+use App\Helpers\NotificationManager;
+use App\Services\SocialMediaService;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\AccountTypeSchoolDetail;
 
     class BlogService
     {
@@ -122,8 +123,18 @@ use Maatwebsite\Excel\Facades\Excel;
     public function createBlog(array $blog_data)
     {
         try {
-            $blog = Blog::create($blog_data);
-
+            if (isset($blog_data['image']) && $blog_data['image']->isValid()) {
+                $filePath = $blog_data['image']->store('blogs', 'public');
+                $blog_data['image'] = $filePath;
+            }
+    
+            $blog = Blog::create([
+                'title' => $blog_data['title'],
+                'slug' => $blog_data['slug'],
+                'image' => $blog_data['image'] ?? null,
+                'content' => $blog_data['content'],
+            ]);
+    
             return [
                 'code' => 200,
                 'message' => 'Blog created successfully',

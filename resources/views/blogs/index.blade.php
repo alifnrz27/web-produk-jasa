@@ -24,7 +24,7 @@
             <div id="content_1" role="tabpanel"
                 class="max-w-full transition-all {{ !$has_error ? '' : 'hidden' }}  tab-contents p-4 lg:p-8 bg-white mt-4 !rounded-box">
                 <h1 class="text-xl lg:text-3xl font-bold mb-4">{{ $title }}</h1>
-                <a href="" class="text-xl lg:text-xl font-bold p-1 mb-4 bg-blue-400 rounded">Buat Blog</a>
+                <a href="{{ route('blogs.create') }}" class="text-xl lg:text-xl font-bold p-1 mb-4 bg-blue-400 rounded">Buat Blog</a>
                 @if (isset($blogs) && $blogs->isNotEmpty())
                     @include('blogs.table', ['blogs' => $blogs])
                 @else
