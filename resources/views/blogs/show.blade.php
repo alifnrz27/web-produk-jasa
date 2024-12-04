@@ -16,7 +16,7 @@
     </div>
 
     <div class="text-gray-700 leading-relaxed">
-        <p class="text-sm text-gray-500 mb-6"><span class="font-mono text-gray-600">{{ $blog['content'] }}</span></p>
+        <p class="text-sm text-gray-500 mb-6"><span class="font-mono text-gray-600">{!! $blog['content'] !!}</span></p>
     </div>
 </div>
 @endsection

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\Controllers\Controller;
-use App\Services\BlogService;
+use App\Models\Blog;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Services\BlogService;
+use App\Http\Controllers\Controller;
 
 class BlogController extends Controller
 {
@@ -50,9 +52,30 @@ class BlogController extends Controller
         return redirect()->route('blogs.index');
     }
 
-    public function edit() {}
+    public function edit(Blog $blog)
+{
+    return view('blogs.edit', ['blog' => $blog]);
+}
 
-    public function update() {}
+
+public function update(Request $request, Blog $blog)
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'slug' => 'nullable|string|max:255|unique:blogs,slug,' . $blog->id,
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'content' => 'required|string',
+    ]);
+
+    $response = $this->blogService->updateBlog($blog, $validatedData);
+
+    if ($response['code'] !== 200) {
+        return redirect()->route('blogs.edit', $blog)->with('error', $response['message']);
+    }
+
+    return redirect()->route('blogs.index')->with('success', 'Blog updated successfully');
+}
+
 
     public function show($id)
     {
