@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Blog\BlogController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Product\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
