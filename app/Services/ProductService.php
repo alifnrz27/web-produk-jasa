@@ -34,7 +34,11 @@ class ProductService
     {
         $product = Product::findOrFail($id);
 
+<<<<<<< HEAD
         if (isset($data[' image'])) {
+=======
+        if (isset($data['image'])) {
+>>>>>>> 0e4151dac986d38338ffae2741cb84d6b9e8a750
             if ($product->image) {
                 Storage::delete($product->image);
             }

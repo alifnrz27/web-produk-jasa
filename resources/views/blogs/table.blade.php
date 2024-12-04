@@ -36,6 +36,10 @@
                                                  <li><a
                                                         href="{{ route('blogs.show', ['blog' => $item->id]) }}">Detail</a>
                                                 </li>
+                                                <li>
+                                                    <a href="{{ route('blogs.edit', $item) }}">Edit</a>
+                                                </li>
+                                                
                                                 {{--
                                                 <li><a data-selector="#edit-modal .content"
                                                         data-url="{{ route('api.accounts.show') }}?id={{ $item->id }}&type=edit"

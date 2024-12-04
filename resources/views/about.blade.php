@@ -23,8 +23,14 @@
                     <h3 class="mt-8 text-2xl font-semibold text-gray-800">Misi Kami</h3>
                     <ul class="mt-4 space-y-3 text-lg text-gray-600">
                         <li class="flex items-center">
+<<<<<<< HEAD
                             <i class="fa-solid fa-person"></i>
                       
+=======
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500 mr-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v3h10V3a1 1 0 112 0v4a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z" clip-rule="evenodd" />
+                            </svg>
+>>>>>>> 0e4151dac986d38338ffae2741cb84d6b9e8a750
                             Menyediakan produk berkualitas dengan harga yang bersaing.
                         </li>
                         <li class="flex items-center">

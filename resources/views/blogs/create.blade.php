@@ -15,7 +15,18 @@
 
         <div class="flex flex-col mb-4">
             <label for="content" class="block text-gray-700">Isi:</label>
-            <textarea name="content" id="content" class="border rounded p-2" rows="4" placeholder="Masukkan isi blog" required></textarea>
+            <textarea id="editor" name="content"></textarea>
+
+            <script>    
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .then(editor => {
+                    console.log('Editor siap:', editor);
+                })
+                .catch(error => {
+                    console.error('Terjadi kesalahan:', error);
+                });
+            </script>
         </div>
 
         <div class="flex flex-col mb-4">
