@@ -31,6 +31,7 @@ use App\Services\SocialMediaService;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\AccountTypeSchoolDetail;
+use Illuminate\Support\Facades\Storage;
 
     class BlogService
     {
@@ -149,27 +150,39 @@ use App\Models\AccountTypeSchoolDetail;
         }
     }
 
-    public function updateBlog($blog_id, array $blog_data)
-    {
-        try {
-            $blog = Blog::where('id', $blog_id);
-            $blog->update($blog_data);
-
-            
-
-            return [
-                'code' => 200,
-                'message' => 'Blog updated successfully',
-                'data' => $blog,
-            ];
-        } catch (Exception $e) {
-            return [
-                'code' => 500,
-                'message' => $e->getMessage(),
-                'data' => [],
-            ];
+    public function updateBlog(Blog $blog, array $blog_data)
+{
+    try {
+        if (isset($blog_data['image']) && $blog_data['image']->isValid()) {
+            if ($blog->image) {
+                Storage::disk('public')->delete($blog->image);
+            }
+            $filePath = $blog_data['image']->store('blogs', 'public');
+            $blog_data['image'] = $filePath;
         }
+
+        $blog->update([
+            'title' => $blog_data['title'],
+            'slug' => $blog_data['slug'] ?? Str::slug($blog_data['title']),
+            'image' => $blog_data['image'] ?? $blog->image,
+            'content' => $blog_data['content'],
+        ]);
+
+        return [
+            'code' => 200,
+            'message' => 'Blog updated successfully',
+            'data' => $blog->toArray(),
+        ];
+    } catch (Exception $e) {
+        return [
+            'code' => 500,
+            'message' => $e->getMessage(),
+            'data' => [],
+        ];
     }
+}
+
+
 
     public function deleteBlog($blog_id)
     {
