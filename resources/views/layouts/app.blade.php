@@ -35,6 +35,7 @@
             <div class="hidden md:flex space-x-2 text-white">
                 <a href="{{ route('products.index') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Produk</a>
                 <a href="{{ route('about') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Tentang</a>
+                <a href="{{ route('blogs.index') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Blog</a>
             </div>
 
             <div class="flex items-center md:hidden space-x-4">

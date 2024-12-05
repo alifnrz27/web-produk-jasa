@@ -53,7 +53,7 @@
                                                         @method("DELETE")
                                                         
                                                     <button type="submit">
-                                                        Hapus Account
+                                                        Hapus Blog
                                                     </button>
                                                         @csrf
                                                     </form>
