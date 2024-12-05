@@ -60,14 +60,18 @@ class ProductService
         try {
             $product = Product::findOrFail($id);
 
-            if (isset($data['image'])) {
-                if ($product->image) {
-                    Storage::delete($product->image);
-                }
-                $data['image'] = $data['image']->store('product_images', 'public');
-            } else {
-                $data['image'] = $product->image;
+<<<<<<<<< Temporary merge branch 1
+        if (isset($data['image'])) {
+=========
+        if (isset($data[' image'])) {
+>>>>>>>>> Temporary merge branch 2
+            if ($product->image) {
+                Storage::delete($product->image);
             }
+            $data['image'] = $data['image']->store('product_images', 'public');
+        } else {
+            $data['image'] = $product->image;
+        }
 
             $product->update([
                 'name' => $data['name'],
