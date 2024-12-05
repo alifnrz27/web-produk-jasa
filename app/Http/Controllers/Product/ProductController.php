@@ -30,17 +30,20 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        logger()->info('Product Data: ', $request->all());
+    
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
+    
         $this->productService->createProduct($request->all());
-
+    
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
+    
 
     public function edit($id)
     {
@@ -57,8 +60,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' => 'nullable|image|max:2048',
         ]);
-
-        $this->productService->updateProduct($id, $request->all());
+        $this->productService->updateProduct($id, $request);
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui!');
     }
@@ -76,3 +78,4 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus!');
     }
 }
+

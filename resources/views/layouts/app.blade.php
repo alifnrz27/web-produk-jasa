@@ -6,10 +6,9 @@
     <title>@yield('title', 'Aplikasi Produk Jasa')</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-<<<<<<< HEAD
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-=======
->>>>>>> 0e4151dac986d38338ffae2741cb84d6b9e8a750
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
     
     @stack('styles')
 </head>
@@ -24,13 +23,14 @@
 
             <div class="hidden md:flex items-center space-x-4">
                 <form action="{{ route('products.index') }}" method="GET" class="flex items-center bg-white rounded-lg overflow-hidden shadow-md w-80">
-                    <input type="text" name="search" placeholder="Cari produk..." class="px-4 py-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..." class="px-4 py-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-400">
                     <button type="submit" class="bg-blue-400 text-white px-4 py-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M9 4a7 7 0 107 7 7 7 0 00-7-7z" />
                         </svg>
                     </button>
                 </form>
+                
             </div>
 
             <div class="hidden md:flex space-x-2 text-white">
@@ -75,7 +75,7 @@
         @yield('content')
     </div>
 
-    <footer class="bg-blue-500 text-white py-4 mt-8 text-center">
+    <footer class="bg-blue-500 text-white py-4 mt-8 text-center flex justify-center">
         <p>&copy; {{ date('Y') }} Aplikasi Produk Jasa</p>
     </footer>
 
@@ -93,8 +93,6 @@
 
     @stack('scripts')
 </body>
-<<<<<<< HEAD
+
 </html>
-=======
-</html>
->>>>>>> 0e4151dac986d38338ffae2741cb84d6b9e8a750
+

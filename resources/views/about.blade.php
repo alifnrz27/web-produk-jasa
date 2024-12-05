@@ -23,27 +23,13 @@
                     <h3 class="mt-8 text-2xl font-semibold text-gray-800">Misi Kami</h3>
                     <ul class="mt-4 space-y-3 text-lg text-gray-600">
                         <li class="flex items-center">
-<<<<<<< HEAD
-                            <i class="fa-solid fa-person"></i>
-                      
-=======
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500 mr-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v3h10V3a1 1 0 112 0v4a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z" clip-rule="evenodd" />
-                            </svg>
->>>>>>> 0e4151dac986d38338ffae2741cb84d6b9e8a750
-                            Menyediakan produk berkualitas dengan harga yang bersaing.
+                            <i class="fa-solid fa-person"></i> Menyediakan produk berkualitas dengan harga yang bersaing.
                         </li>
                         <li class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500 mr-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v12a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 112 0v12a3 3 0 01-3 3H6a3 3 0 01-3-3V3a1 1 0 011-1z" clip-rule="evenodd" />
-                            </svg>
-                            Memberikan layanan pelanggan yang responsif dan ramah.
+                            <i class="fa-solid fa-person"></i> Memberikan layanan pelanggan yang responsif dan ramah.
                         </li>
                         <li class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500 mr-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M2 4a1 1 0 011 1v10a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 112 0v10a3 3 0 01-3 3H4a3 3 0 01-3-3V5a1 1 0 011-1z" clip-rule="evenodd" />
-                            </svg>
-                            Menyediakan pengalaman belanja online yang mudah dan menyenangkan.
+                            <i class="fa-solid fa-person"></i> Menyediakan pengalaman belanja online yang mudah dan menyenangkan.
                         </li>
                     </ul>
                 </div>
