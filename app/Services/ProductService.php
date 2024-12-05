@@ -59,12 +59,8 @@ class ProductService
     {
         try {
             $product = Product::findOrFail($id);
-
-<<<<<<<<< Temporary merge branch 1
         if (isset($data['image'])) {
-=========
-        if (isset($data[' image'])) {
->>>>>>>>> Temporary merge branch 2
+
             if ($product->image) {
                 Storage::delete($product->image);
             }
