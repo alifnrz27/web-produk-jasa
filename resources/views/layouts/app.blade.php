@@ -6,6 +6,7 @@
     <title>@yield('title', 'Aplikasi Produk Jasa')</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     @stack('styles')
 </head>

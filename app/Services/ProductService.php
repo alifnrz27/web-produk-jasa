@@ -34,7 +34,7 @@ class ProductService
     {
         $product = Product::findOrFail($id);
 
-        if (isset($data['image'])) {
+        if (isset($data[' image'])) {
             if ($product->image) {
                 Storage::delete($product->image);
             }
