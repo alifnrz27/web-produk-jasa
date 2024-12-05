@@ -17,7 +17,7 @@
                         </div>
 
                         <a href="{{ route('products.show', $product->id) }}" class="text-2xl font-semibold text-blue-600 hover:text-blue-700 hover:underline transition duration-300">{{ $product->name }}</a>
-                        <p class="text-gray-600 mt-2 text-lg font-medium">${{ number_format($product->price, 2) }}</p>
+                        <p class="text-gray-600 mt-2 text-lg font-medium">IDR {{ number_format($product->price, 2) }}</p>
 
                         <div class="flex justify-between items-center mt-4">
                             <a href="{{ route('products.show', $product->id) }}" class="w-20 bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 text font-semibold transition duration-300 transform hover:scale-105 mb-2 mr-2">Lihat</a>
