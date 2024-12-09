@@ -22,7 +22,7 @@ class ProductService
         }
     }
     
-    public function getProductById($id)
+    public function getDetailProduct($id)
     {
         try {
             return Product::findOrFail($id);
@@ -85,6 +85,19 @@ class ProductService
             throw $e;
         }
     }
+
+    public function searchProducts($search)
+    {
+    try {
+        return Product::where('name', 'like', "%{$search}%")
+            ->orWhere('description', 'like', "%{$search}%")
+            ->get();
+    } catch (Exception $e) {
+        logger()->error('Kesalahan saat mencari produk: ' . $e->getMessage());
+        throw $e;
+    }
+    }
+
 
     public function deleteProduct($id)
     {

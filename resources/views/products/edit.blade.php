@@ -11,7 +11,10 @@
 
         <div class="mb-6">
             <label for="name" class="block text-lg font-medium text-gray-700">Nama Produk</label>
-            <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}" class="w-full p-4 mt-2 border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+            <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}" class="w-full p-4 mt-2 border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            @error('name')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="mb-6">
@@ -31,23 +34,27 @@
 
         <div class="mb-6">
             <label for="price" class="block text-lg font-medium text-gray-700">Harga</label>
-            <input type="number" name="price" id="price" value="{{ old('price', $product->price) }}" class="w-full p-4 mt-2 border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+            <input type="number" name="price" id="price" value="{{ old('price', $product->price) }}" class="w-full p-4 mt-2 border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            @error('price')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="mb-6">
             <label for="image" class="block text-lg font-medium text-gray-700">Gambar Produk</label>
             @if($product->image)
-                <div class="mb-4">
+                <div class="mb-4" id="current-image-container">
                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-64 h-64 object-cover mb-2 mx-auto" id="current-image-preview">
-                    <p class="text-gray-500 text-sm text-center">Gambar Saat Ini</p>
                 </div>
             @endif
             <input type="file" name="image" id="image" class="w-full p-4 mt-2 border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" onchange="previewImage(event)">
             
             <div class="mt-4" id="image-preview-container" style="display: none;">
                 <img id="image-preview" src="" alt="Image Preview" class="w-64 h-64 object-cover mb-2 mx-auto">
-                <p class="text-gray-500 text-sm text-center">Preview Gambar Baru</p>
             </div>
+            @error('image')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="flex justify-between items-center mt-8">
@@ -56,7 +63,6 @@
         </div>
     </form>
 </div>
-
 @endsection
 
 @push('scripts')
@@ -68,10 +74,16 @@
             reader.onload = function(e) {
                 const previewContainer = document.getElementById('image-preview-container');
                 const imagePreview = document.getElementById('image-preview');
+                const currentImageContainer = document.getElementById('current-image-container');
 
-                
-                imagePreview.src = e.target.result;
-                previewContainer.style.display = 'block'; 
+                if (file) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.style.display = 'block'; 
+                    currentImageContainer.style.display = 'none'; 
+                } else {
+                    previewContainer.style.display = 'none'; 
+                    currentImageContainer.style.display = 'block'; 
+                }
             }
 
             if (file) {

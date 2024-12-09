@@ -8,6 +8,7 @@ Route::get('/', function () {
 });
 
 Route::resource('products',ProductController::class);
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
