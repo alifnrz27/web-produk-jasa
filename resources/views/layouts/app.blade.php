@@ -9,7 +9,6 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-    
     @stack('styles')
 </head>
 <body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
@@ -22,7 +21,7 @@
             </a>
 
             <div class="hidden md:flex items-center space-x-4">
-                <form action="{{ route('products.index') }}" method="GET" class="flex items-center bg-white rounded-lg overflow-hidden shadow-md w-80">
+                <form action="{{ route('search') }}" method="GET" class="flex items-center bg-white rounded-lg overflow-hidden shadow-md w-80">
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..." class="px-4 py-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-400">
                     <button type="submit" class="bg-blue-400 text-white px-4 py-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,7 +29,6 @@
                         </svg>
                     </button>
                 </form>
-                
             </div>
 
             <div class="hidden md:flex space-x-2 text-white">
@@ -94,6 +92,5 @@
 
     @stack('scripts')
 </body>
-
 </html>
 

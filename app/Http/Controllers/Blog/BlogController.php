@@ -19,9 +19,12 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
+
         $blogs = $this->blogService->getAllBlog(15, false, [], $request);
+    
 
         if ($blogs['code'] != 200) {
+            dd($blogs['message']);
             abort($blogs['code']);
         }
 

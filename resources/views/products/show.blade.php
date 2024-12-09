@@ -24,7 +24,7 @@
 
             
                 <div class="flex space-x-4 mt-6">
-                    <a href="{{ route('products.index') }}" class="w-full bg-gray-600 text-white py-3 rounded-md text-center hover:bg-gray-700 transition duration-300 transform hover:scale-105">Kembali</a>
+                    <a href="{{ route('products.index') }}" class="w-full bg-gray-500 text-white py-3 rounded-md text-center hover:bg-gray-600 transition duration-300 transform hover:scale-105">Kembali</a>
                 </div>
             </div>
         </div>
