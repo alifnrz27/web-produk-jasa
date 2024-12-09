@@ -39,6 +39,7 @@ class ProductService
     {
         try {
             $imagePath = null;
+
             if (isset($data['image'])) {
                 $imagePath = $data['image']->store('product_images', 'public');
             }
@@ -64,16 +65,15 @@ class ProductService
             if ($product->image) {
                 Storage::delete($product->image);
             }
-            $data['image'] = $data['image']->store('product_images', 'public');
+            $imagePath = $data['image']->store('product_images', 'public');
         } else {
-            $data['image'] = $product->image;
+            $imagePath = $product->image;
         }
-
             $product->update([
                 'name' => $data['name'],
                 'description' => $data['description'],
                 'price' => $data['price'],
-                'image' => $data['image'],
+                'image' => $imagePath,
             ]);
 
             return $product;

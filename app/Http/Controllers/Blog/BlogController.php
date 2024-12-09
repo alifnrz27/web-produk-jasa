@@ -36,21 +36,33 @@ class BlogController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
+{
+    $validatedData = $request->validate(
+        [
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:blogs,slug',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'content' => 'required|string',
-        ]);
-        $response = $this->blogService->createBlog($validatedData);
-
-        if ($response['code'] !== 200) {
-            return redirect()->route('blogs.create')->with('error', $response['message']);
-        }
-    
-        return redirect()->route('blogs.index');
+        ],
+        [
+            'title.required' => 'Judul wajib diisi.',
+            'title.max' => 'Judul maksimal 255 karakter.',
+            'slug.max' => 'Slug maksimal 255 karakter.',
+            'slug.unique' => 'Slug sudah digunakan.',
+            'image.image' => 'File harus berupa gambar.',
+            'image.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif.',
+            'image.max' => 'Ukuran gambar maksimal 2MB.',
+            'content.required' => 'Konten wajib diisi.',
+        ]
+    );
+    $response = $this->blogService->createBlog($validatedData);
+    if ($response['code'] !== 200) {
+        return redirect()->route('blogs.create')->with('error', $response['message']);
     }
+
+    return redirect()->route('blogs.index')->with('success', 'Blog berhasil dibuat.');
+}
+
 
     public function edit(Blog $blog)
 {

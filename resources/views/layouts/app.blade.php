@@ -7,7 +7,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
->>>>>>>>> Temporary merge branch 2
+
     
     @stack('styles')
 </head>
@@ -33,9 +33,9 @@
             </div>
 
             <div class="hidden md:flex space-x-2 text-white">
+                <a href="{{ route('blogs.index') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Blog</a>
                 <a href="{{ route('products.index') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Produk</a>
                 <a href="{{ route('about') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Tentang</a>
-                <a href="{{ route('blogs.index') }}" class="hover:bg-blue-600 px-4 py-2 rounded-md border font-bold">Blog</a>
             </div>
 
             <div class="flex items-center md:hidden space-x-4">
@@ -93,8 +93,6 @@
 
     @stack('scripts')
 </body>
-<<<<<<<<< Temporary merge branch 1
 </html>
-=========
 </html>
->>>>>>>>> Temporary merge branch 2
+
