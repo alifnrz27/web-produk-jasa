@@ -6,6 +6,7 @@
     <title>@yield('title', 'Aplikasi Produk Jasa')</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
     
@@ -93,6 +94,6 @@
 
     @stack('scripts')
 </body>
-</html>
+
 </html>
 
